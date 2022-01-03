@@ -1,0 +1,41 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap'); */
+
+.log {
+    background: url("../images/bb.jpg");
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    object-fit: cover;
+}
+
+.back {
+    background: url("../images/bb.jpg");
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    object-fit: cover;
+}
+
+.signup {
+    
+    color: rgb(63, 172, 166);
+    font-size: 50px;
+    margin-top: 10px;
+    margin-left: 170px;
+    margin-bottom: 10px;
+    /* font-family: Lobster; */
+
+}
+
+.signup1 {
+    /* color: rgba(202, 171, 31, 0.479); */
+    color: rgb(25, 25, 218);
+    font-size: 20px;
+    margin-left: 40px;
+    /* font-family: Styles; */
+}
