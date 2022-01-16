@@ -1,19 +1,19 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Routes, Route, useNavigate } from "react-router-dom"
-import Navbar from "./components/Navbar"
 import Home from "./pages/Home"
 import SignUp from "./pages/SignUp"
 import Login from "./pages/Login"
 import GamesContext from "./utils/GameContext"
 import Profile from "./pages/Profile"
-import WebFont from "webfontloader" // أحذفه ماني محتاجته
 import NavbarItem from "./components/Navbar"
-import Showcase from "./components/Showcase"
 import OneGame from "./pages/OneGame"
+import OneTicket from "./pages/OneTicket"
 
 function App() {
   const [games, setGames] = useState([])
+  const [tickets, setTickets] = useState([])
+  
   const [profile, setProfile] = useState(null)
   const navigate = useNavigate()
 
@@ -35,6 +35,7 @@ function App() {
   useEffect(() => {
     getGames()
     if (localStorage.token) getProfile()
+    getTickets()
   }, [])
 
   const signup = async e => {
@@ -137,7 +138,43 @@ function App() {
       else console.log(error)
     }
   }
+const getTickets = async() => {
+  const response = await axios.get("http://localhost:5000/api/auth/gametickets")
+    setTickets(response.data)
+    getProfile()
+}
+   //  اد تكت
+  const addTicket = async (e, gameId) => {
+    e.preventDefault()
+    try {
+      const form = e.target
+      const ticketBody = {
+        date: form.elements.date.value,
+      }
 
+      form.reset()
+      await axios.post(`http://localhost:5000/api/games/${gameId}/tickets`, ticketBody, {
+        headers: {
+          Authorization: localStorage.token,
+        },
+      })
+
+      getGames()
+    } catch (error) {
+      if (error.response) console.log(error.response.data)
+      else console.log(error)
+    }
+  }
+
+  const deleteComment = async (gameId, comment_id) => {
+    await axios.delete(`http://localhost:5000/api/games/${gameId}/comments/${comment_id}`, {
+     
+      headers: {
+        Authorization: localStorage.token,
+      }, 
+    })
+    getGames()
+  }
   const store = {
     games,
     profile,
@@ -147,24 +184,21 @@ function App() {
     addRating,
     likeGame,
     addComment,
-    // signupshow,
-    // loginshow,
-    // handleOpenLogin,
-    // handleCloseLogin,
-    // handleOpenSignup,
-    // handleCloseSignup,
+    deleteComment,
+    addTicket,
+    tickets,
   }
 
   return (
     <GamesContext.Provider value={store}>
       <NavbarItem />
-
       <SignUp />
       <Login />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/game/:gameId" element={<OneGame />} />
+        <Route path="profile/ticket/:ticketId" element={<OneTicket />} />
       </Routes>
     </GamesContext.Provider>
   )

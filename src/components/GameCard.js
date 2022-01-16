@@ -10,7 +10,6 @@ function GameCard(props) {
     <Col>
       <Card
         style={{
-          // backgroundColor: "rgba(16, 167, 175, 0.301)",
           backgroundImage: `url("${image}")`,
           borderRadius: "10px",
           fontFamily: "Isemin", 

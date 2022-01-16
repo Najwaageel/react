@@ -21,7 +21,7 @@ function OneStar(props) {
       }}
     />
   ) : (
-    <AiOutlineStar size="25" onMouseOver={() => setFill(starNumber)} />
+    <AiOutlineStar  size="25" onMouseOver={() => setFill(starNumber)} />
   )
 }
 

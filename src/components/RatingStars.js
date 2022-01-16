@@ -11,11 +11,11 @@ function RatingStars(props) {
 
 
   return (
-    <OverlayTrigger
+    <OverlayTrigger  
       placement="bottom"
       overlay={
-        <Tooltip>
-          <div style={{ padding: 15 }} onMouseLeave={() => setFill(0)}>
+        <Tooltip style={{ color:"rgba(95, 181, 184, 0.909)" }}>
+          <div style={{ border:0 , padding: 15, backgroundColor:"rgba(95, 181, 184, 0.909)" }} onMouseLeave={() => setFill(0)}>
             <OneStar fill={fill} setFill={setFill} starNumber={1} gameId={gameId} setShow={setShow} />
             <OneStar fill={fill} setFill={setFill} starNumber={2} gameId={gameId} setShow={setShow} />
             <OneStar fill={fill} setFill={setFill} starNumber={3} gameId={gameId} setShow={setShow} />
@@ -26,7 +26,7 @@ function RatingStars(props) {
       }
       show={show}
     >
-      <Button variant="light" onClick={() => setShow(!show)}>
+      <Button style={{ borderRadius: "50px" }} variant="light" onClick={() => setShow(!show)}>
         <AiFillStar />
       </Button>
     </OverlayTrigger>

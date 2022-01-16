@@ -2,8 +2,10 @@ import { useContext } from "react"
 import GamesContext from "../utils/GameContext"
 import { Col, Container, Image, Row } from "react-bootstrap"
 import styles from "../components/mystyle.module.css" 
-import GameItem from "../components/GameItem"
 import GameCard from "../components/GameCard"
+import TicketCard from "../components/TicketCard"
+import Footer from "../components/Foter"
+
 
 
 function Profile() {
@@ -29,12 +31,24 @@ console.log(profile)
         </Row>
 
         <Row className="mt-5">
-          <h3 style={{ color: "rgb(85, 161, 163)" }}> My Favourite Games </h3>
+          <h3 style={{ color: "rgb(85, 161, 163)", marginBottom: 30 }}> My Favourite Games </h3>
           {profile.likes.map(game => (
             <GameCard game={game} key={game._id} />
           ))}
         </Row>
+
+        {/* التكت */}
+        <Row className="mt-5">
+          <h3 style={{ color: "rgb(85, 161, 163)" , marginBottom: 30  }}> My Ticket </h3>
+          {profile.tickets.map(ticket => (
+            
+            <TicketCard ticket={ticket} key={ticket._id} /> 
+            
+          ))}
+        </Row>
+
       </Container>
+      <Footer />
     </>
   )
 }
